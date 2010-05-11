@@ -76,7 +76,7 @@ def compute_y_ions(protein):
     return ion_list
 
 def compute_ions(protein):
-    """Compute all possible b and y ion masses for a protien.
+    """Compute all possible b and y ion masses for a protein.
     
     Arguments:
     - `protein`: The list of amino acids in a protein.
