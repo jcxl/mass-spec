@@ -52,7 +52,7 @@ def compute_b_ions(protein):
 
     ion_list = []
 
-    sum = 0
+    sum = 1.0078 #This number is added to the total mass for some reason.
     
     for index in range(k):
         sum +=  mass(protein[index])
@@ -65,7 +65,9 @@ def compute_y_ions(protein):
 
     ion_list = []
 
-    sum = 0
+    sum = 19.01838504 #This number is added to the total mass for some reason.
+                      #It is also much bigger than the number added to the b
+                      #ion mass. Weird.
 
     for index_mod in range(k):
         sum += mass(protein[k - index_mod])
