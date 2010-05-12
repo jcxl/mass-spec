@@ -2,14 +2,12 @@ import fasa_helper
 import dta_helper
 import operator
 import output
+import math
 
 def calculate_error_margin(mass):
-    MOE = .05
 
-    margin =  MOE
-
-    lower = mass - margin
-    upper = mass + margin
+    lower = mass - .05
+    upper = mass + .05
 
     return {'l':lower,'u':upper}
     
@@ -22,16 +20,16 @@ def match(mass, proteins):
         
         for x in range(len(b_ions)):
             
-            margin = calculate_error_margin(b_ions[x])
-            if margin['l'] <= mass <= margin['u']:
+            #margin = calculate_error_margin(b_ions[x])
+            if math.fabs(b_ions[x] - mass) <= .05:
                 matches.append([protein[0], 'b' + str(x+1)])
                 break
             if mass < b_ions[x]:
                 break
             
         for x in range(len(y_ions)):
-            margin = calculate_error_margin(y_ions[x])
-            if margin['l'] <= mass <= margin['u']:
+            #margin = calculate_error_margin(y_ions[x])
+            if math.fabs(y_ions[x] - mass) <= .05:
                 matches.append([protein[0], 'y' + str(x+1)])
                 break
             
