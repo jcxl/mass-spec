@@ -32,20 +32,15 @@ def read_proteins(file):
     return output
 
 def mass(acid):
-    AMINO_ACID_MASSES = [['A',71.037] ,['C',103.009],['D',115.027],
-                         ['E',129.043],['F',147.068],['G',57.021],
-                         ['H',137.059],['I',113.084],['K',128.095],
-                         ['L',113.084],['M',131.040],['N',114.043],
-                         ['P',97.053] ,['Q',128.059],['R',156.101],
-                         ['S',87.032] ,['T',101.048],['V',99.068],
-                         ['W',186.079],['Y',163.063]]
+    AMINO_ACID_MASSES = {'A':71.037 ,'C':103.009,'D':115.027,
+                         'E':129.043,'F':147.068,'G':57.021,
+                         'H':137.059,'I':113.084,'K':128.095,
+                         'L':113.084,'M':131.040,'N':114.043,
+                         'P':97.053 ,'Q':128.059,'R':156.101,
+                         'S':87.032 ,'T':101.048,'V':99.068,
+                         'W':186.079,'Y':163.063}
 
-    for entry in AMINO_ACID_MASSES:
-        if acid == entry[0]:
-            acid_mass = entry[1]
-            return acid_mass
-
-    return 0 #This should never happen.
+    return AMINO_ACID_MASSES[acid]
 
 def compute_b_ions(protein):
     k = len(protein) - 1

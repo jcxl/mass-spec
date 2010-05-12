@@ -12,7 +12,7 @@ def calculate_error_margin(mass):
     upper = mass + margin
 
     return {'l':lower,'u':upper}
-
+    
 def match(mass, proteins):
     matches = []
 
@@ -21,13 +21,22 @@ def match(mass, proteins):
         y_ions = protein[1][1]
         
         for x in range(len(b_ions)):
+            
             margin = calculate_error_margin(b_ions[x])
             if margin['l'] <= mass <= margin['u']:
                 matches.append([protein[0], 'b' + str(x+1)])
+                break
+            if mass < b_ions[x]:
+                break
+            
         for x in range(len(y_ions)):
             margin = calculate_error_margin(y_ions[x])
             if margin['l'] <= mass <= margin['u']:
                 matches.append([protein[0], 'y' + str(x+1)])
+                break
+            
+            if mass < y_ions[x]:
+                break
 
     return matches
 
@@ -56,5 +65,3 @@ def inspect_dta(results_filename):
     scores = sorted(scores, key=operator.itemgetter(1),reverse = True)
 
     output.output(results_filename,scores,peak_matches)
-
-inspect_dta('yr_inclusion.3076.3547.1.dta')
