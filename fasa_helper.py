@@ -53,7 +53,7 @@ def compute_b_ions(protein):
         sum +=  mass(protein[index])
         ion_list.append(sum)
 
-    return ion_list
+    return tuple(ion_list)
 
 def compute_y_ions(protein):
     k = len(protein) - 1
@@ -68,7 +68,7 @@ def compute_y_ions(protein):
         sum += mass(protein[k - index_mod])
         ion_list.append(sum)   #She's Hungarian.
 
-    return ion_list
+    return tuple(ion_list)
 
 def compute_ions(protein):
     """Compute all possible b and y ion masses for a protein.
@@ -103,4 +103,4 @@ def read_fasa(filename):
 
         prot_list.append([name, ions])
 
-    return prot_list
+    return tuple(prot_list)
